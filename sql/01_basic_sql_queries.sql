@@ -10,7 +10,9 @@
 -- Hint: Use the nyc_census_blocks table
 
 -- TODO: Write your query below
-
+SELECT SUM(popn_asian)
+AS asian_pop
+FROM nyc_census_blocks;
 
 
 -- Exercise 2: What is the population of Manhattan?
@@ -24,7 +26,10 @@
 -- Hint: Filter rows where boroname = 'Manhattan'
 
 -- TODO: Write your query below
-
+SELECT SUM(popn_total)
+AS manhattan_pop
+FROM nyc_census_blocks
+WHERE boroname = 'Manhattan';
 
 
 -- Exercise 3: For each borough, what percentage of the population is black?
@@ -44,7 +49,11 @@
 -- Hint: Use ORDER BY boroname for readability
 
 -- TODO: Write your query below
-
+SELECT boroname, (SUM(popn_black)/ SUM(popn_total))*100.0
+AS percentage_black
+FROM nyc_census_blocks
+GROUP BY boroname
+ORDER BY boroname ASC;
 
 
 
