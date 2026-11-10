@@ -102,7 +102,9 @@ WHERE name = '5th Ave';
 -- Hint: Filter rows where name = 'Soho'
 
 -- TODO: Write your query below
-
+SELECT ST_AsGeoJSON(geom) AS soho_geojson
+FROM nyc_neighborhoods
+WHERE name = 'Soho';
 
 
 
@@ -116,7 +118,9 @@ WHERE name = '5th Ave';
 -- Hint: Use num_coney_island_polygons as the output alias
 -- Hint: Use the nyc_neighborhoods table
 -- Hint: Filter rows where name = 'Coney Island'
-
+SELECT ST_NumGeometries(geom) AS num_coney_island_polygons
+FROM nyc_neighborhoods
+WHERE name = 'Coney Island';
 
 
 -- Exercise 8: What are the 5 longest roads in NYC?
@@ -134,6 +138,9 @@ WHERE name = '5th Ave';
 -- Hint: Use the nyc_streets table
 -- Hint: ORDER BY ST_Length(geom) DESC OR use the alias length_meters
 -- Hint: Use LIMIT 5
-
+SELECT name, ST_LENGTH(geom) AS length_meters
+FROM nyc_streets
+ORDER BY length_meters DESC
+LIMIT 5;
 
 
