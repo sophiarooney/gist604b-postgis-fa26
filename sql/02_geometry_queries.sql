@@ -12,7 +12,10 @@
 -- Note: Units will be in square meters (CRS is UTM Zone 18N, EPSG:26918)
 
 -- TODO: Write your query below
-
+SELECT ST_Area(geom)
+AS new_brighton_area_sq_m
+FROM nyc_neighborhoods
+WHERE name = 'New Brighton';
 
 
 
@@ -28,7 +31,10 @@
 -- Hint: Filter rows where boroname = 'The Bronx'
 
 -- TODO: Write your query below
-
+SELECT (ST_Area(ST_Union(geom)))/4046.86
+AS bronx_area_acres
+FROM nyc_neighborhoods
+WHERE boroname = 'The Bronx'; 
 
 
 
