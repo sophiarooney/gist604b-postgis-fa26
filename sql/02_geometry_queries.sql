@@ -50,7 +50,9 @@ WHERE boroname = 'The Bronx';
 -- Hint: ST_NumInteriorRings(geom) = 0 means no holes (interior rings)
 
 -- TODO: Write your query below
-
+SELECT COUNT(*) AS no_hole_polygons
+FROM nyc_census_blocks
+WHERE ST_NumInteriorRings(geom) = 0;
 
 
 
@@ -66,7 +68,8 @@ WHERE boroname = 'The Bronx';
 -- Hint: Use the nyc_streets table
 
 -- TODO: Write your query below
-
+SELECT SUM(ST_Length(geom))/1609.34 AS total_length_miles
+FROM nyc_streets;
 
 
 
@@ -82,7 +85,9 @@ WHERE boroname = 'The Bronx';
 -- Hint: Filter rows where name = '5th Ave'
 
 -- TODO: Write your query below
-
+SELECT SUM(ST_Length(geom)) AS fifth_ave_length
+FROM nyc_streets
+WHERE name = '5th Ave';
 
 
 
