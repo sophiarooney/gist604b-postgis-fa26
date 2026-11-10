@@ -9,7 +9,9 @@
 -- Hint: Filter rows where name = 'Queensboro Brg'
 
 -- TODO: Write your query below
-
+SELECT ST_AsText(geom) AS queensboro
+FROM nyc_streets
+WHERE name = 'Queensboro Brg';
 
 
 
@@ -24,6 +26,18 @@
 -- Hint: Use the SQL query from Exercise 1 to get the geometry of Queensboro Brg in the WHERE clause
 
 -- TODO: Write your query below
+SELECT 
+    nn.name AS neighborhood,
+    nn.boroname AS borough
+FROM nyc_neighborhoods AS nn
+WHERE ST_Intersects(
+    nn.geom,
+    (
+        SELECT geom
+        FROM nyc_streets
+        WHERE name = 'Queensboro Brg'
+    )
+);
 
 
 
