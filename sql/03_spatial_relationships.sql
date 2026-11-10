@@ -56,7 +56,15 @@ WHERE ST_Intersects(
 -- Hint: Exclude NULL street names using name IS NOT NULL in the WHERE clause
 
 -- TODO: Write your query below
-
+SELECT ns.name 
+FROM nyc_streets AS ns 
+WHERE (ST_Intersects (ns.geom, 
+     (SELECT geom
+        FROM nyc_streets
+        WHERE name = 'Queensboro Brg')
+    ))
+AND name !='Queensboro Brg'
+AND name IS NOT NULL;
 
 
 
